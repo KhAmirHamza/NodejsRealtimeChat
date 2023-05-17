@@ -62,7 +62,8 @@ app.post('/upload', async (req, res) => {
   var readFile = Buffer.from(req.body.image, "base64");
   fs.writeFileSync(__dirname + "/Images/" + req.body.name + ".jpg", readFile, "utf8");
   //await res.send({message: "Upload Image Successful"});
-  var ref = { url: "http://172.28.240.1:3000/Images/" + req.body.name + ".jpg" }
+  var ref = { url: "https://nodejsrealtimechat.onrender.com/Images/" + req.body.name + ".jpg" }
+ // var ref = { url: "http://172.28.240.1:3000/Images/" + req.body.name + ".jpg" }
   console.log(ref);
   await res.json(ref);
   res.end();
