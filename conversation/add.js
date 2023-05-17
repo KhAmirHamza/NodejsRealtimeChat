@@ -1,9 +1,23 @@
 const Conversation = require('../model/Conversation');
 const User = require('../model/User');
+const moment = require('moment-timezone');
 
 module.exports = {
 
     addConverastion(users, messages, res) {
+
+        const dateDhaka = moment.tz(Date.now(), "Asia/Dhaka");
+
+        const messageSchema = {
+            _id: "M" + Date.now(),
+            fromId: message.fromId,
+            toId: message.toId,
+            text: message.text,
+            seenBy: message.seenBy,
+            imageUrl: message.imageUrl,
+            createdAt: dateDhaka,
+            updatedAt: dateDhaka
+          };
 
         const conversationSchema = new Conversation({
             _id: "C" + Date.now(),

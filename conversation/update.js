@@ -1,8 +1,12 @@
 const { response } = require('express');
 const Conversation = require('../model/Conversation')
+const moment = require('moment-timezone');
 
 module.exports = {
   async updateConversationMessage(convsId, message, res) {
+
+    const dateDhaka = moment.tz(Date.now(), "Asia/Dhaka");
+
     const query = { "_id": convsId };
     const messageSchema = {
       _id: "M" + Date.now(),
@@ -10,7 +14,9 @@ module.exports = {
       toId: message.toId,
       text: message.text,
       seenBy: message.seenBy,
-      imageUrl: message.imageUrl
+      imageUrl: message.imageUrl,
+      createdAt: dateDhaka,
+      updatedAt: dateDhaka
     };
     console.log("messageSchema");
     await Conversation.findOneAndUpdate(query, { $push: { 'messages': messageSchema } }, { new: true });

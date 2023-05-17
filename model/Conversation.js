@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const User = require('./User');
+const moment = require('moment-timezone');
+
 const Schema = mongoose.Schema;
 
 const config = { useNewUrlParser: true, useUnifiedTopology: true };
@@ -13,14 +15,20 @@ var conversationDbConnection = mongoose.createConnection(conversationDbConnectUr
     }
 });
 
+const dateDhaka = moment.tz(Date.now(), "Asia/Dhaka");
+
+console.log(dateDhaka); // "2018-08-20T16:35:14.033+06:00"
+
 const messageSchema = new Schema({
     _id: { type: String, required: false },
     fromId: { type: String, required: false },
     toId: { type: String, required: false },
     text: { type: String, required: false },
     seenBy: { type: Array, required: true },
-    imageUrl: { type: String, required: false }
-}, { timestamps: true });
+    imageUrl: { type: String, required: false },
+    createdAt: {type: Date, default: dateDhaka},
+    updatedAt: {type: Date, default: dateDhaka}
+});
 
 const userSchema = new Schema({
     _id: { type: String, required: false },
