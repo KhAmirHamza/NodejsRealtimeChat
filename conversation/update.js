@@ -17,7 +17,7 @@ module.exports = {
     let seconds = dateObject.getSeconds();
     
     let fullDate = date +"-"+month+"-"+year;
-    let fullTime = hours +"-"+minutes;
+    let fullTime = hours +":"+minutes;
     let dateTime = fullDate +",  "+ fullTime
 
     const query = { "_id": convsId };
