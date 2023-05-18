@@ -15,9 +15,7 @@ var conversationDbConnection = mongoose.createConnection(conversationDbConnectUr
     }
 });
 
-const dateDhaka = moment.tz(Date.now(), "Asia/Dhaka");
-
-console.log(dateDhaka); // "2018-08-20T16:35:14.033+06:00"
+ // "2018-08-20T16:35:14.033+06:00"
 
 const messageSchema = new Schema({
     _id: { type: String, required: false },
@@ -26,8 +24,8 @@ const messageSchema = new Schema({
     text: { type: String, required: false },
     seenBy: { type: Array, required: true },
     imageUrl: { type: String, required: false },
-    createdAt: {type: Date, default: dateDhaka},
-    updatedAt: {type: Date, default: dateDhaka}
+    createdAt: {type: String, required: false},
+    updatedAt: {type: String, required: false}
 });
 
 const userSchema = new Schema({
