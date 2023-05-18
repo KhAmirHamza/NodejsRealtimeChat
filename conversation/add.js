@@ -6,10 +6,11 @@ module.exports = {
 
     addConverastion(users, messages, res) {
 
-        const dateDhaka = moment.tz(Date.now(), "Asia/Dhaka");
+      //  const dateDhaka = moment.tz(Date.now(), "Asia/Dhaka");
 
 
-/*         let dateObject = new Date();
+        let dateObject = new Date(new Date().toLocaleString('en', {timeZone: 'America/New_York'}));
+
 console.log("A date object is defined")
 
 let date = ("0" + dateObject.getDate()).slice(-2);
@@ -22,8 +23,8 @@ let seconds = dateObject.getSeconds();
 
 
 let fullDate = date +"-"+month+"-"+year;
-let fullTime = hours +"-"+minutes;
-let dateTime = fullDate +",  " */
+let fullTime = hours +":"+minutes;
+let dateTime = fullDate +",  "+fullTime
 
         const messageSchema = {
             _id: "M" + Date.now(),
@@ -32,8 +33,8 @@ let dateTime = fullDate +",  " */
             text: messages[0].text,
             seenBy: messages[0].seenBy,
             imageUrl: messages[0].imageUrl,
-            createdAt: dateDhaka,
-            updatedAt: dateDhaka
+            createdAt: dateTime,
+            updatedAt: dateTime
           };
 
           
