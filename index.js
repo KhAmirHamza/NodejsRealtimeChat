@@ -122,7 +122,9 @@ io.on('connection', (socket) => {
     update.updateConvsUserStatus(socket.id, "Inactive");
   })
 
-  setTimeout(update.updateConvsUserStatus(socket.id, "Active"), 3000);
+  setTimeout(()=>{
+    update.updateConvsUserStatus(socket.id, "Active");
+  }, 3000);
 
 
 
