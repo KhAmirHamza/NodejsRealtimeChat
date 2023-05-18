@@ -111,7 +111,7 @@ io.on('connection', (socket) => {
   socket.on('notifyMessageSeen', (data) => {
     const { otherUserId, currentUserId } = data; // Data sent from client when notifyMessageSeen event emitted
 
-    console.log("notifyMessageSeen Event is called from Client:");
+    console.log("notifyMessageSeen Event is called from Client");
     console.log(data);
 
     socket.broadcast.emit("notifyMessageSeen=" + otherUserId, { "otherUserId": currentUserId });
@@ -123,6 +123,9 @@ io.on('connection', (socket) => {
   })
 
   setTimeout(update.updateConvsUserStatus(socket.id, "Active"), 3000);
+
+
+
 
 });
 
