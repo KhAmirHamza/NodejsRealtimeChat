@@ -5,20 +5,8 @@ const moment = require('moment-timezone');
 module.exports = {
   async updateConversationMessage(convsId, message, res) {
 
-    let dateObject = new Date();
-    console.log("A date object is defined")
-    
-    let date = ("0" + dateObject.getDate()).slice(-2);
-    let month = ("0" + (dateObject.getMonth() + 1)).slice(-2);
-    let year = dateObject.getFullYear();
-    
-    let hours = dateObject.getHours();
-    let minutes = dateObject.getMinutes();
-    let seconds = dateObject.getSeconds();
-    
-    let fullDate = date +"-"+month+"-"+year;
-    let fullTime = hours +":"+minutes;
-    let dateTime = fullDate +",  "+ fullTime
+    //const dateDhaka = moment.tz(Date.now(), "Asia/Dhaka").format('ha z');
+    const dateDhaka = moment.tz(Date.now(), "Asia/Dhaka"); // 4am PST
 
     const query = { "_id": convsId };
     const messageSchema = {
@@ -28,9 +16,11 @@ module.exports = {
       text: message.text,
       seenBy: message.seenBy,
       imageUrl: message.imageUrl,
-      createdAt: dateTime,
-      updatedAt: dateTime
+      createdAt: dateDhaka,
+      updatedAt: dateDhaka
     };
+
+
     console.log("messageSchema");
     await Conversation.findOneAndUpdate(query, { $push: { 'messages': messageSchema } }, { new: true });
     res.json(messageSchema);
