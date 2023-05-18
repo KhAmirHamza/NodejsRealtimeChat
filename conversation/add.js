@@ -10,19 +10,22 @@ module.exports = {
 
         const messageSchema = {
             _id: "M" + Date.now(),
-            fromId: message.fromId,
-            toId: message.toId,
-            text: message.text,
-            seenBy: message.seenBy,
-            imageUrl: message.imageUrl,
+            fromId: messages[0].fromId,
+            toId: messages[0].toId,
+            text: messages[0].text,
+            seenBy: messages[0].seenBy,
+            imageUrl: messages[0].imageUrl,
             createdAt: dateDhaka,
             updatedAt: dateDhaka
           };
 
+          
+
+
         const conversationSchema = new Conversation({
             _id: "C" + Date.now(),
             users: users,
-            messages: messages
+            messages: [messageSchema]
         });
 
         conversationSchema.save().then((result) => {
