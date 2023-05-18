@@ -76,6 +76,7 @@ app.get("/Images/:imageName", (req, res) => {
 
 const server = http.createServer(app);
 const { Server } = require('socket.io');
+const update = require('./conversation/update');
 const io = new Server(server);
 
 app.get('/', (req, res) => {
@@ -84,6 +85,9 @@ app.get('/', (req, res) => {
 
 
 io.on('connection', (socket) => {
+
+  update.updateConvsUserStatus(socket.id, "Active");
+
   //console.log(`User connected ${socket.id}`);
   //Message Sent from Client
   socket.on('sendMessage', (data) => {
@@ -114,6 +118,10 @@ io.on('connection', (socket) => {
     socket.broadcast.emit("notifyMessageSeen=" + otherUserId, { "otherUserId": currentUserId });
 
   });
+
+  socket.on('disconnect', (reason)=>{
+    update.updateConvsUserStatus(socket.id, "Inactive");
+  })
 });
 
 

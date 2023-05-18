@@ -37,9 +37,6 @@ let dateTime = fullDate +",  "+fullTime
             updatedAt: dateTime
           };
 
-          
-
-
         const conversationSchema = new Conversation({
             _id: "C" + Date.now(),
             users: users,

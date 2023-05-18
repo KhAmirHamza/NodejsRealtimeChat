@@ -46,5 +46,14 @@ module.exports = {
     //console.log(query);
     await Conversation.findOneAndUpdate(query, { $push: { 'messages.$.seenBy': currentUserId } }, { new: true });
     res.end();
+  },
+
+
+  async updateConvsUserStatus(chatId, status, res){
+    const query = {"users.chatId": chatId };
+    var response  = await Conversation.findOneAndUpdate(query, {$set: {"users.$.status": status}}, {new : true});
+    console.log("response");
+    console.log(response);
+    res.end();
   }
 }
