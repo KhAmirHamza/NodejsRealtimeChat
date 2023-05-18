@@ -91,7 +91,7 @@ io.on('connection', (socket) => {
     console.log(data);
     console.log("sendMessage Event End");
 
-    const { _id, fromId, toId, text, seenBy, imageUrl } = data; // Data sent from client when sendMessage event emitted
+    const { _id, fromId, toId, text, seenBy, imageUrl, createdAt, updatedAt} = data; // Data sent from client when sendMessage event emitted
 
     socket.broadcast.emit(toId, {
       id: _id,
@@ -99,7 +99,9 @@ io.on('connection', (socket) => {
       toId: toId,
       text: text,
       seenBy: seenBy,
-      imageUrl: imageUrl
+      imageUrl: imageUrl,
+      createdAt: createdAt,
+      updatedAt: updatedAt
     });
   });
 
