@@ -86,7 +86,6 @@ app.get('/', (req, res) => {
 
 io.on('connection', (socket) => {
 
-  update.updateConvsUserStatus(socket.id, "Active");
 
   //console.log(`User connected ${socket.id}`);
   //Message Sent from Client
@@ -122,6 +121,9 @@ io.on('connection', (socket) => {
   socket.on('disconnect', (reason)=>{
     update.updateConvsUserStatus(socket.id, "Inactive");
   })
+
+  setTimeout(update.updateConvsUserStatus(socket.id, "Active"), 3000);
+
 });
 
 
