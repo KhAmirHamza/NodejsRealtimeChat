@@ -2,7 +2,7 @@ const User = require('../model/User');
 
 module.exports = {
 
-    addUser(chatId, name, email, password, res) {
+    addUser(chatId, name, email, password, status, res) {
         console.log("Check email: " + email);
 
         const userSchema = new User({
@@ -11,6 +11,7 @@ module.exports = {
             name: name,
             email: email,
             password: password,
+            status: status,
         });
 
         userSchema.save().then((result) => {

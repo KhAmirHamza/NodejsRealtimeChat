@@ -49,11 +49,11 @@ module.exports = {
   },
 
 
-  async updateConvsUserStatus(chatId, status, res){
+  async updateConvsUserStatus(chatId, status){
     const query = {"users.chatId": chatId };
     var response  = await Conversation.findOneAndUpdate(query, {$set: {"users.$.status": status}}, {new : true});
     console.log("response");
     console.log(response);
-    res.end();
+    //res.end();
   }
 }
