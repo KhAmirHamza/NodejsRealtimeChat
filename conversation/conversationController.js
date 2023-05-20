@@ -6,6 +6,15 @@ const Add = require('./add')
 const Get = require('./get')
 const Update = require('./update')
 
+let socket;
+
+// setTimeout(()=>{
+//     Update.updateConvsUserStatus(socket.id, "Active");
+//   }, 3000);
+
+
+
+
 conversationRouter.post("/add", function (req, res) {
     console.log("req.body");
     console.log(req.body);

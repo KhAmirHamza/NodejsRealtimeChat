@@ -10,6 +10,7 @@ var storage, path;
 path = require('path');
 const multer = require("multer");
 
+
 app.use(json({ limit: "50mb" }))
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }));
@@ -76,7 +77,7 @@ app.get("/Images/:imageName", (req, res) => {
 
 const server = http.createServer(app);
 const { Server } = require('socket.io');
-const update = require('./conversation/update');
+const User = require('./model/User');
 const io = new Server(server);
 
 app.get('/', (req, res) => {
@@ -84,11 +85,14 @@ app.get('/', (req, res) => {
 });
 
 
+let onlineUsers = [];
+
 io.on('connection', (socket) => {
 
 
   //console.log(`User connected ${socket.id}`);
   //Message Sent from Client
+  
   socket.on('sendMessage', (data) => {
     console.log("sendMessage Event is called from Client:");
     console.log(data);
@@ -106,7 +110,35 @@ io.on('connection', (socket) => {
       createdAt: createdAt,
       updatedAt: updatedAt
     });
+
+
   });
+
+
+
+
+// add new user
+socket.on("new-user-add", (newUserId) => {
+  if (!onlineUsers.some((user) => user.userId === newUserId)) {  // if user is not added before
+    onlineUsers.push({ userId: newUserId, socketId: socket.id });
+    console.log("new user is here!", onlineUsers);
+  }
+  // send all active users to new user
+  io.emit("get-users", onlineUsers);
+});
+
+socket.on("offline", () => {
+  // remove user from active users
+  onlineUsers = onlineUsers.filter((user) => user.socketId !== socket.id);
+  console.log("user is offline", onlineUsers);
+  // send all online users to all users
+  io.emit("get-users", onlineUsers);
+});
+
+
+
+
+
 
   socket.on('notifyMessageSeen', (data) => {
     const { otherUserId, currentUserId } = data; // Data sent from client when notifyMessageSeen event emitted
@@ -118,16 +150,30 @@ io.on('connection', (socket) => {
 
   });
 
+  socket.on('getActiveUsers', (currentUserId)=>{
+
+    socket.broadcast.emit("activeUsers=" + currentUserId, { "users": users });
+    
+
+  });
+
   socket.on('disconnect', (reason)=>{
-    update.updateConvsUserStatus(socket.id, "Inactive");
+    //update.updateConvsUserStatus(socket.id, "Inactive");
+
+    delete users[socket.id];
+    socket.broadcast.emit("activeUsers=" + currentUserId, { "users": users });
+
+
+
+
+    onlineUsers = onlineUsers.filter((user) => user.socketId !== socket.id);
+    console.log("user disconnected", onlineUsers);
+    // send all online users to all users
+    io.emit("get-users", onlineUsers);
+
   })
 
-  setTimeout(()=>{
-    update.updateConvsUserStatus(socket.id, "Active");
-  }, 3000);
-
-
-
+  
 
 });
 
