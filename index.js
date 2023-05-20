@@ -159,7 +159,7 @@ socket.on("offline", () => {
 
   socket.on('disconnect', (reason)=>{
     //update.updateConvsUserStatus(socket.id, "Inactive");
-    socket.broadcast.emit("activeUsers=" + currentUserId, { "users": users });
+   // socket.broadcast.emit("activeUsers=" + currentUserId, { "users": users });
 
 
 
