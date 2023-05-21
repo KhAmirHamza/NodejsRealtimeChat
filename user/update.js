@@ -5,7 +5,7 @@ module.exports = {
     async updateChatId(userId, chatId, res) {
 
         const query = { "_id": userId };
-        const newUserData = await User.findOneAndUpdate(query, { 'chatId': chatId }, { new: true });
+        const newUserData = await User.findOneAndUpdate(query, { 'chatId': chatId, 'status': 'Active' }, { new: true });
 
     //console.log(query);
     //await Conversation.findOneAndUpdate(query2, { $set: { 'users.$.chatId': chatId, "users.$.status": "Active" } }, { new: true });

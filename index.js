@@ -78,6 +78,8 @@ app.get("/Images/:imageName", (req, res) => {
 const server = http.createServer(app);
 const { Server } = require('socket.io');
 const User = require('./model/User');
+const Conversation = require('./model/Conversation');
+
 const io = new Server(server);
 
 app.get('/', (req, res) => {
