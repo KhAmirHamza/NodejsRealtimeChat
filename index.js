@@ -166,8 +166,8 @@ socket.on("offline", () => {
    const query1 = {"chatId": socket.id };
    const query2 = {"users.chatId": socket.id };
 
-   await User.findOneAndUpdate(query1, { 'status': "Inactive" }, { new: true });
-   await Conversation.updateMany(query2, { $set: { "users.$.status": "Inactive" } }, { new: true });
+   await User.findOneAndUpdate(query1, { 'status': "Offline" }, { new: true });
+   await Conversation.updateMany(query2, { $set: { "users.$.status": "Offline" } }, { new: true });
 
 
 
