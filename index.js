@@ -110,21 +110,20 @@ io.on('connection', (socket) => {
       createdAt: createdAt,
       updatedAt: updatedAt
     });
-
-
   });
 
 
 
 
 // add new user
-socket.on("new-user-add", (newUserId) => {
+socket.on("new-user-add", (newUserId, socketId) => {
   if (!onlineUsers.some((user) => user.userId === newUserId)) {  // if user is not added before
-    onlineUsers.push({ userId: newUserId, socketId: socket.id });
+    onlineUsers.push({ userId: newUserId, socketId: socketId});
     console.log("new user is here!", onlineUsers);
   }
   // send all active users to new user
   io.emit("get-users", onlineUsers);
+  print("onlineUsers: "+onlineUsers);
 });
 
 socket.on("offline", () => {
@@ -134,6 +133,7 @@ socket.on("offline", () => {
   // send all online users to all users
   io.emit("get-users", onlineUsers);
 });
+
 
 
 
