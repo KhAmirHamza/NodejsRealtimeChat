@@ -174,7 +174,8 @@ socket.on("offline", () => {
     onlineUsers = onlineUsers.filter((user) => user.socketId !== socket.id);
     console.log("user disconnected", onlineUsers);
     // send all online users to all users
-    io.emit("get-users", onlineUsers);
+   // io.emit("get-users", onlineUsers);
+   io.emit("leaveUser", socket.id);
 
   })
 
