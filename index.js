@@ -157,10 +157,15 @@ socket.on("offline", () => {
 
   });
 
-  socket.on('disconnect', (reason)=>{
+  socket.on('disconnect', async (reason)=>{
     //update.updateConvsUserStatus(socket.id, "Inactive");
    // socket.broadcast.emit("activeUsers=" + currentUserId, { "users": users });
 
+   const query1 = {"chatId": socket.id };
+   const query2 = {"users.chatId": socket.id };
+
+   await User.findOneAndUpdate(query1, { 'status': "Inactive" }, { new: true });
+   await Conversation.updateMany(query2, { $set: { "users.$.status": "Inactive" } }, { new: true });
 
 
 
