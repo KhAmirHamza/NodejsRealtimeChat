@@ -9,8 +9,8 @@ module.exports = {
 
     //console.log(query);
     //await Conversation.findOneAndUpdate(query2, { $set: { 'users.$.chatId': chatId, "users.$.status": "Active" } }, { new: true });
-    
-    const query2 = {"users._id": userId };
+        const query2 = {"users._id": userId };
+
     await Conversation.updateMany(query2, { $set: { 'users.$.chatId': chatId, "users.$.status": "Active" } }, { new: true });
 
 
