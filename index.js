@@ -123,7 +123,7 @@ socket.on("new-user-add", (newUserId, socketId) => {
   }
   // send all active users to new user
   io.emit("get-users", onlineUsers);
-  print("onlineUsers: "+onlineUsers);
+  console.log("onlineUsers: "+onlineUsers);
 });
 
 socket.on("offline", () => {

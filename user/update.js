@@ -13,7 +13,6 @@ module.exports = {
 
     await Conversation.updateMany(query2, { $set: { 'users.$.chatId': chatId, "users.$.status": "Active" } }, { new: true });
 
-
         res.json(newUserData);
         res.end()
 

@@ -21,6 +21,6 @@ userRouter.post("/updateChatId", function (req, res) {
 userRouter.get("/get", (req, res) => {
     //console.log(req.query.email);
     Get.getUser(req.query.email, req.query.password, res);
-})
+});
 
 module.exports = userRouter;
