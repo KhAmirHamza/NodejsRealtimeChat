@@ -2,7 +2,7 @@ const Conversation = require('../model/Conversation');
 
 module.exports = {
   
- getConversation(query, res) {
+ getConversation(userId, res) {
   var query = {};
     if (userId != null) query = { users: { $elemMatch: { _id: userId } } };
 
