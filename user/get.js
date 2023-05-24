@@ -1,4 +1,3 @@
-const Message = require('../model/Message');
 const User = require('../model/User');
 
 module.exports = {

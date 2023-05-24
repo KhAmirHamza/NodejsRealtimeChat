@@ -32,14 +32,15 @@ const userSchema = new Schema({
     _id: { type: String, required: false },
     chatId: { type: String, required: false },
     name: { type: String, required: false },
+    imageUrl: { type: String, required: false },
     email: { type: String, required: false },
-    password: { type: String, required: false },
     status: { type: String, required: false },
 },
     { timestamps: true });
 
 const conversationSchema = new Schema({
     _id: { type: String, required: true },
+    title: {type: String, required: true},
     users: { type: [userSchema], required: false },
     messages: { type: [messageSchema], required: false }
 },

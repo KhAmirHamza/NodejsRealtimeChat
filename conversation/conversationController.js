@@ -18,7 +18,7 @@ let socket;
 conversationRouter.post("/add", function (req, res) {
     console.log("req.body");
     console.log(req.body);
-    Add.addConverastion(req.body.users, req.body.messages, res);
+    Add.addConverastion(req.body.users, req.body.messages, req.body.title, res);
 });
 
 conversationRouter.post("/sendMessage/", function (req, res) {
@@ -38,6 +38,13 @@ conversationRouter.post("/updateConvsUserStatus/", function (req, res) {
 conversationRouter.get("/get", (req, res) => {
     var userId = req.query.userId;
     Get.getConversation(userId, res);
+})
+
+conversationRouter.get("/getBetween", (req, res) => {
+    var uId1 = req.query.uId1;
+    var uId2 = req.query.uId2;
+
+    Get.checkConvsBetweenUers(uId1, uId2, res);
 })
 
 module.exports = conversationRouter;

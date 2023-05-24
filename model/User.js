@@ -16,6 +16,7 @@ const userSchema = new Schema({
     _id: { type: String, required: true },
     chatId: { type: String, required: true },
     name: { type: String, required: true },
+    imageUrl: { type: String, required: true },
     email: { type: String, required: true },
     password: { type: String, required: true },
     status: { type: String, required: true },
