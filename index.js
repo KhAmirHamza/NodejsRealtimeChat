@@ -100,9 +100,9 @@ io.on('connection', (socket) => {
     console.log(data);
     console.log("sendMessage Event End");
 
-    const { _id, fromId, toId , convsId, text, seenBy, imageUrl, createdAt, updatedAt} = data; // Data sent from client when sendMessage event emitted
+    const { _id, fromId, toId , convsId, convsType, text, seenBy, imageUrl, createdAt, updatedAt} = data; // Data sent from client when sendMessage event emitted
 
-    socket.broadcast.emit("receiveMessage="+convsId, {
+    socket.broadcast.emit("receiveMessage?convsId="+convsId+"&convsType="+convsType, {
       id: _id,
       fromId: fromId,
       toId: toId,
@@ -141,14 +141,15 @@ socket.on("offline", () => {
 
 
 
-
   socket.on('notifyMessageSeen', (data) => {
-    const { convsId, newUserId } = data; // Data sent from client when notifyMessageSeen event emitted
+    const { convsId, convsType, newUserId } = data; // Data sent from client when notifyMessageSeen event emitted
 
     console.log("notifyMessageSeen Event is called from Client");
     console.log(data);
+    
+    var notifyMessageSeenEvent ="notifyMessageSeen?convsId="+convsId+"&convsType="+convsType
 
-    socket.broadcast.emit("notifyMessageSeen=" + convsId, { "newUserId": newUserId });
+    socket.broadcast.emit(notifyMessageSeenEvent, { "newUserId": newUserId });
 
   });
 
