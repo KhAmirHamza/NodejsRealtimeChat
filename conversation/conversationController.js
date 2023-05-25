@@ -18,7 +18,7 @@ let socket;
 conversationRouter.post("/add", function (req, res) {
     console.log("req.body");
     console.log(req.body);
-    Add.addConverastion(req.body.users, req.body.messages, req.body.title, req.body.title, res);
+    Add.addConverastion(req.body.users, req.body.messages, req.body.title, req.body.type, res);
 });
 
 conversationRouter.post("/sendMessage/", function (req, res) {
