@@ -4,7 +4,7 @@ const moment = require('moment-timezone');
 
 module.exports = {
 
-    addConverastion(users, messages, title,  res) {
+    addConverastion(users, messages, title, type,  res) {
 
       //  const dateDhaka = moment.tz(Date.now(), "Asia/Dhaka");
 
@@ -40,6 +40,7 @@ let dateTime = fullDate +",  "+fullTime
         const conversationSchema = new Conversation({
             _id: "C" + Date.now(),
             title: title,
+            type: type,
             users: users,
             messages: [messageSchema]
         });
