@@ -116,7 +116,6 @@ io.on('connection', (socket) => {
 
 
 
-
 // add new user
 socket.on("new-user-add", (newUserId, socketId) => {
   if (!onlineUsers.some((user) => user.userId === newUserId)) {  // if user is not added before

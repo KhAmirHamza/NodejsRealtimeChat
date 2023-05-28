@@ -25,8 +25,8 @@ module.exports = {
     const query = { "_id": convsId };
     const messageSchema = {
       _id: "M" + Date.now(),
-      fromId: message.fromId,
-      toId: message.toId,
+      from: message.from,
+      to: message.to,
       text: message.text,
       seenBy: message.seenBy,
       imageUrl: message.imageUrl,
@@ -44,6 +44,8 @@ module.exports = {
   async updateConversationMessageSeenData(convsId, messageId, currentUserId, res) {
     const query = { "_id": convsId, "messages._id": messageId };
     //console.log(query);
+
+    
     await Conversation.findOneAndUpdate(query, { $push: { 'messages.$.seenBy': currentUserId } }, { new: true });
     res.end();
   },

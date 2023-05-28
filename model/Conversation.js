@@ -19,8 +19,9 @@ var conversationDbConnection = mongoose.createConnection(conversationDbConnectUr
 
 const messageSchema = new Schema({
     _id: { type: String, required: false },
-    fromId: { type: String, required: false },
-    toId: { type: String, required: false },
+    from:{ type: userSchema, required: false},
+    to: { type: String, required: false },
+    senderName: { type: String, required: false},
     text: { type: String, required: false },
     seenBy: { type: Array, required: true },
     imageUrl: { type: String, required: false },
@@ -35,8 +36,7 @@ const userSchema = new Schema({
     imageUrl: { type: String, required: false },
     email: { type: String, required: false },
     status: { type: String, required: false },
-},
-    { timestamps: true });
+},{ timestamps: true });
 
 const conversationSchema = new Schema({
     _id: { type: String, required: true },
@@ -44,8 +44,7 @@ const conversationSchema = new Schema({
     type: {type: String, required: true},
     users: { type: [userSchema], required: false },
     messages: { type: [messageSchema], required: false }
-},
-    { timestamps: true });
+},{ timestamps: true });
 
 const Conversation = conversationDbConnection.model('Conversation', conversationSchema);
 module.exports = Conversation;

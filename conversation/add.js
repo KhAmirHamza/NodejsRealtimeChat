@@ -28,8 +28,8 @@ let dateTime = fullDate +",  "+fullTime
 
         const messageSchema = {
             _id: "M" + Date.now(),
-            fromId: messages[0].fromId,
-            toId: messages[0].toId,
+            from: messages[0].from,
+            to: messages[0].to,
             text: messages[0].text,
             seenBy: messages[0].seenBy,
             imageUrl: messages[0].imageUrl,
