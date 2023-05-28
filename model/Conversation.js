@@ -17,6 +17,15 @@ var conversationDbConnection = mongoose.createConnection(conversationDbConnectUr
 
  // "2018-08-20T16:35:14.033+06:00"
 
+ const userSchema = new Schema({
+    _id: { type: String, required: false },
+    chatId: { type: String, required: false },
+    name: { type: String, required: false },
+    imageUrl: { type: String, required: false },
+    email: { type: String, required: false },
+    status: { type: String, required: false },
+},{ timestamps: true });
+
 const messageSchema = new Schema({
     _id: { type: String, required: false },
     from:{ type: userSchema, required: false},
@@ -29,14 +38,7 @@ const messageSchema = new Schema({
     updatedAt: {type: String, required: false}
 });
 
-const userSchema = new Schema({
-    _id: { type: String, required: false },
-    chatId: { type: String, required: false },
-    name: { type: String, required: false },
-    imageUrl: { type: String, required: false },
-    email: { type: String, required: false },
-    status: { type: String, required: false },
-},{ timestamps: true });
+
 
 const conversationSchema = new Schema({
     _id: { type: String, required: true },
@@ -48,5 +50,3 @@ const conversationSchema = new Schema({
 
 const Conversation = conversationDbConnection.model('Conversation', conversationSchema);
 module.exports = Conversation;
-
-
