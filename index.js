@@ -148,7 +148,7 @@ socket.on("offline", () => {
     console.log("notifyMessageSeen Event is called from Client");
     console.log(data);
     
-    var notifyMessageSeenEvent ="notifyMessageSeen?convsId="+convsId+"&convsType="+convsType
+    var notifyMessageSeenEvent ="notifyMessageSeen?convsType="+convsType;
 
     socket.broadcast.emit(notifyMessageSeenEvent, { "newUserId": newUserId });
 
