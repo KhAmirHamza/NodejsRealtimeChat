@@ -104,6 +104,8 @@ io.on('connection', (socket) => {
     //socket.broadcast.emit("receiveMessage?convsId="+convsId+"&convsType="+convsType, {
     socket.broadcast.emit("receiveMessage", {
       id: _id,
+      convsId: convsId,
+      convsType: convsType,
       from: from,
       to: to,
       text: text,
