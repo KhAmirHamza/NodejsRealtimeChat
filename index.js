@@ -151,7 +151,7 @@ socket.on("offline", () => {
     var notifyMessageSeenEvent ="notifyMessageSeen?convsType="+convsType;
 
     socket.broadcast.emit(notifyMessageSeenEvent, { "newUserId": newUserId });
-
+    
   });
 
   socket.on('getActiveUsers', (currentUserId)=>{
