@@ -143,6 +143,12 @@ socket.on('typing', (data)=>{
 
     console.log(typingUsersId);
 
+    var typingEvent = "typing?convsId="+convsId; //receiving event name...
+
+    var json = { "convsId": convsId, "convsType": convsType, "typingUsersId": typingUsersId }
+
+    socket.broadcast.emit(typingEvent, json);
+
 });
 
 
