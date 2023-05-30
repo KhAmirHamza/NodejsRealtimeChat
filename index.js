@@ -138,6 +138,14 @@ socket.on("offline", () => {
 });
 
 
+socket.on('typing', (data)=>{
+    const { convsId, convsType, typingUsersId } = data; // Data sent from client when typing event emitted
+
+    console.log(typingUsersId);
+
+});
+
+
 
 
 
