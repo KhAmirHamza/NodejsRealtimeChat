@@ -32,6 +32,7 @@ let dateTime = fullDate +",  "+fullTime
             to: messages[0].to,
             text: messages[0].text,
             seenBy: messages[0].seenBy,
+            receivedBy: messages[0].receivedBy,
             imageUrl: messages[0].imageUrl,
             createdAt: dateTime,
             updatedAt: dateTime

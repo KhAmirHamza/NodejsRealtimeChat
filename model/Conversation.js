@@ -33,6 +33,7 @@ const messageSchema = new Schema({
     senderName: { type: String, required: false},
     text: { type: String, required: false },
     seenBy: { type: Array, required: true },
+    receivedBy: {type: Array, required: true},
     imageUrl: { type: String, required: false },
     createdAt: {type: String, required: false},
     updatedAt: {type: String, required: false}
