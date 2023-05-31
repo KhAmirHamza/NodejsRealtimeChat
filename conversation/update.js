@@ -29,6 +29,7 @@ module.exports = {
       to: message.to,
       text: message.text,
       seenBy: message.seenBy,
+      receivedBy: message.receivedBy,
       imageUrl: message.imageUrl,
       createdAt: dateTime,
       updatedAt: dateTime
