@@ -51,6 +51,14 @@ module.exports = {
     res.end();
   },
 
+  async updateConversationMessageReceivedData(convsId, messageId, currentUserId, res) {
+    const query = { "_id": convsId, "messages._id": messageId };
+
+    
+    await Conversation.findOneAndUpdate(query, { $push: { 'messages.$.receivedBy': currentUserId } }, { new: true });
+    res.end();
+  },
+
 
   async updateConvsUserStatus(chatId, status){
     const query = {"users.chatId": chatId };
