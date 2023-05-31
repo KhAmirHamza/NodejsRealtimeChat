@@ -32,7 +32,9 @@ conversationRouter.post("/seenMessage/", function (req, res) {
 });
 
 conversationRouter.post("/receivedMessage/", function (req, res) {
+    console.log("receivedMessage");
     console.log(req.body);
+
     Update.updateConversationMessageReceivedData(req.query.convsId, req.body.messageId, req.body.currentUserId, res);
 });
 
