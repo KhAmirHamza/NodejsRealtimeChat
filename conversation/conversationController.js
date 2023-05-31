@@ -30,6 +30,12 @@ conversationRouter.post("/seenMessage/", function (req, res) {
     console.log(req.body);
     Update.updateConversationMessageSeenData(req.query.convsId, req.body.messageId, req.body.currentUserId, res);
 });
+
+conversationRouter.post("/receivedMessage/", function (req, res) {
+    console.log(req.body);
+    Update.updateConversationMessageSeenData(req.query.convsId, req.body.messageId, req.body.currentUserId, res);
+});
+
 conversationRouter.post("/updateConvsUserStatus/", function (req, res) {
     console.log(req.body);
     Update.updateConvsUserStatus(req.query.convsId, req.body.chatId, req.body.status, res);

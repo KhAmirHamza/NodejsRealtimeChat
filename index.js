@@ -152,6 +152,19 @@ socket.on('typing', (data)=>{
 
 });
 
+  socket.on('notifyMessageReceived', (data) => {
+    const { convsId, convsType, newUserId } = data; // Data sent from client when notifyMessageSeen event emitted
+
+    console.log("notifyMessageReceived Event is called from Client");
+    console.log(data);
+    
+    var notifyMessageReceivedEvent ="notifyMessageReceived?convsType="+convsType;
+
+    socket.broadcast.emit(notifyMessageReceivedEvent, { "convsId": convsId, "newUserId": newUserId });
+
+  });
+
+
   socket.on('notifyMessageSeen', (data) => {
     const { convsId, convsType, newUserId } = data; // Data sent from client when notifyMessageSeen event emitted
 
