@@ -31,6 +31,7 @@ module.exports = {
       seenBy: message.seenBy,
       receivedBy: message.receivedBy,
       imageUrl: message.imageUrl,
+      reacts: message.reacts,
       createdAt: dateTime,
       updatedAt: dateTime
     };
