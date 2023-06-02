@@ -153,6 +153,19 @@ socket.on('typing', (data)=>{
 
 });
 
+  socket.on('notifyNewReactAdded', (data) => {
+    const { convsId, messageId, convsType, reactTitle, newUserId } = data; // Data sent from client when notifyMessageSeen event emitted
+
+    console.log("notifyNewReactAdded Event is called from Client");
+    console.log(data);
+    
+    var notifyNewReactAddedEvent ="notifyNewReactAdded?convsType="+convsType;
+
+    socket.broadcast.emit(notifyNewReactAddedEvent, data);
+
+  });
+
+
   socket.on('notifyMessageReceived', (data) => {
     const { convsId, convsType, newUserId } = data; // Data sent from client when notifyMessageSeen event emitted
 
@@ -164,6 +177,7 @@ socket.on('typing', (data)=>{
     socket.broadcast.emit(notifyMessageReceivedEvent, { "convsId": convsId, "newUserId": newUserId });
 
   });
+
 
 
   socket.on('notifyMessageSeen', (data) => {
