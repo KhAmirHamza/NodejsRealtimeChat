@@ -26,6 +26,11 @@ conversationRouter.post("/sendMessage/", function (req, res) {
     Update.updateConversationMessage(req.query.convsId, req.body, res);
 });
 
+conversationRouter.post("/reactMessage/", function (req, res) {
+    console.log(req.body);
+    Update.addReactionUpdateConvs(req.query.convsId, req.body.messageId, req.body.reactTitle, req.body.currentUserId, res);
+});
+
 conversationRouter.post("/seenMessage/", function (req, res) {
     console.log(req.body);
     Update.updateConversationMessageSeenData(req.query.convsId, req.body.messageId, req.body.currentUserId, res);

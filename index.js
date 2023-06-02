@@ -205,8 +205,6 @@ socket.on('typing', (data)=>{
 
   })
 
-  
-
 });
 
 

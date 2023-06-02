@@ -43,6 +43,21 @@ module.exports = {
     res.end();
   },
 
+  async addReactionUpdateConvs(convsId, messageId, reactTitle, userId, res){
+
+    const reactSchema = {
+      title: reactTitle,
+      userId: userId
+    }
+    const query = { "_id": convsId, "messages._id": messageId };
+
+
+    await Conversation.findOneAndUpdate(query, { $push: { 'messages.$.reacts': reactSchema } }, { new: true }).then((data)=>{
+      res.json(reactSchema);
+      res.end();
+    });
+  },
+
   async updateConversationMessageSeenData(convsId, messageId, currentUserId, res) {
     const query = { "_id": convsId, "messages._id": messageId };
     //console.log(query);
