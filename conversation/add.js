@@ -35,6 +35,7 @@ let dateTime = fullDate +",  "+fullTime
             receivedBy: messages[0].receivedBy,
             imageUrl: messages[0].imageUrl,
             reacts: messages[0].reacts,
+            replyOf: messages[0].replyOf,
             createdAt: dateTime,
             updatedAt: dateTime
           };

@@ -18,6 +18,17 @@ const reactSchema = new Schema({
     title: {type: String, required: true},
     userId: {type: String, required: true}
 })
+
+const replyOfSchema = new Schema({
+    _id:{ type: String, required: false},
+    from:{ type: userSchema, required: false},
+    to: { type: String, required: false },
+    senderName: { type: String, required: false},
+    text: { type: String, required: false },
+    imageUrl: { type: String, required: false },
+});
+
+
  // "2018-08-20T16:35:14.033+06:00"
 
  const userSchema = new Schema({
@@ -39,6 +50,7 @@ const messageSchema = new Schema({
     receivedBy: {type: Array, required: true},
     imageUrl: { type: String, required: false },
     reacts : {type: [reactSchema], required: true},
+    replyOf : {type: [replyOfSchema], required: true},
     createdAt: {type: String, required: false},
     updatedAt: {type: String, required: false}
 });
