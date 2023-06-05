@@ -5,7 +5,7 @@ const moment = require('moment-timezone');
 module.exports = {
   async updateConversationMessage(convsId, message, res) {
 
-    let dateObject = new Date(new Date().toLocaleString('en', {timeZone: 'Ashia/Dhaka'}));
+    let dateObject = new Date(new Date().toLocaleString('en', {timeZone: 'America/New_York'}));
 
     console.log("A date object is defined")
     

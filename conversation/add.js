@@ -10,7 +10,7 @@ module.exports = {
       //  const dateDhaka = moment.tz(Date.now(), "Asia/Dhaka");
 
 
-        let dateObject = new Date(new Date().toLocaleString('en', {timeZone: 'Ashia/Dhaka'}));
+        let dateObject = new Date(new Date().toLocaleString('en', {timeZone: 'America/New_York'}));
 
 console.log("A date object is defined")
 
@@ -78,7 +78,7 @@ let dateTime = fullDate +",  "+fullTime
                 
                 // Update.updateConversationMessage(result._id, message, res);
 
-                let dateObject = new Date(new Date().toLocaleString('en', {timeZone: 'Ashia/Dhaka'}));
+                let dateObject = new Date(new Date().toLocaleString('en', {timeZone: 'America/New_York'}));
 
                 console.log("A date object is defined")
                 
