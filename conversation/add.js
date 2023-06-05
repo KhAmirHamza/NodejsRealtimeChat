@@ -117,7 +117,7 @@ let dateTime = fullDate +",  "+fullTime
             }else{
                 console.log("Conversation not found: "+ result);
                 
-                this.addConverastion(users, [messages], title, type, res);
+                this.addConverastion(users, [message], title, type, res);
             }
             
             
