@@ -100,7 +100,7 @@ io.on('connection', (socket) => {
     console.log(data);
     console.log("sendMessage Event End");
 
-    const { _id, from, to , convsId, convsType, text, seenBy, receivedBy, imageUrl, reacts, createdAt, updatedAt} = data; // Data sent from client when sendMessage event emitted
+    const { _id, from, to , convsId, convsType, text, seenBy, receivedBy, imageUrl, reacts, replyOf, createdAt, updatedAt} = data; // Data sent from client when sendMessage event emitted
     //socket.broadcast.emit("receiveMessage?convsId="+convsId+"&convsType="+convsType, {
       socket.broadcast.emit("notifyMessageSend?convsType="+convsType, {
       id: _id,
@@ -113,6 +113,7 @@ io.on('connection', (socket) => {
       receivedBy: receivedBy,
       imageUrl: imageUrl,
       reacts: reacts,
+      replyOf: replyOf,
       createdAt: createdAt,
       updatedAt: updatedAt
     });
