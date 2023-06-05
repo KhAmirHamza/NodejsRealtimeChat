@@ -61,8 +61,7 @@ let dateTime = fullDate +",  "+fullTime
             res.json({ message: "Conversation upload Failed" });
             res.end();
         })
-    },
-
+    }, 
 
     sendFirstMessage(
         users, 
@@ -73,12 +72,48 @@ let dateTime = fullDate +",  "+fullTime
     if (message.from._id != null && message.to !=null )
      query = {'type': type,  $and:[{'users._id': message.from._id},{'users._id': message.to}] } ;
 
-        Conversation.findOne(query).then((result=>{
+        Conversation.findOne(query).then((async result=>{
 
             if(result!=null) {
                 
-                Update.updateConversationMessage(result._id, message, res);
+                // Update.updateConversationMessage(result._id, message, res);
 
+                let dateObject = new Date(new Date().toLocaleString('en', {timeZone: 'Ashia/Dhaka'}));
+
+                console.log("A date object is defined")
+                
+                let date = ("0" + dateObject.getDate()).slice(-2);
+                let month = ("0" + (dateObject.getMonth() + 1)).slice(-2);
+                let year = dateObject.getFullYear();
+                
+                let hours = dateObject.getHours();
+                let minutes = dateObject.getMinutes();
+                let seconds = dateObject.getSeconds();
+                
+                
+                let fullDate = date +"-"+month+"-"+year;
+                let fullTime = hours +":"+minutes;
+                let dateTime = fullDate +",  "+fullTime
+            
+                const query = { "_id": result._id };
+                const messageSchema = {
+                  _id: "M" + Date.now(),
+                  from: message.from,
+                  to: message.to,
+                  text: message.text,
+                  seenBy: message.seenBy,
+                  receivedBy: message.receivedBy,
+                  imageUrl: message.imageUrl,
+                  reacts: message.reacts,
+                  replyOf: message.replyOf,
+                  createdAt: dateTime,
+                  updatedAt: dateTime
+                };
+            
+                await Conversation.findOneAndUpdate(query, { $push: { 'messages': messageSchema } }, { new: true }).then((result)=>{
+                    res.json(result);
+                    res.end();
+                });
             }else{
                 var messages = [];
                 messages.add(message);
