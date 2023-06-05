@@ -178,8 +178,6 @@ socket.on('typing', (data)=>{
 
   });
 
-
-
   socket.on('notifyMessageSeen', (data) => {
     const { convsId, convsType, newUserId } = data; // Data sent from client when notifyMessageSeen event emitted
 

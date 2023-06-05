@@ -32,6 +32,7 @@ module.exports = {
       receivedBy: message.receivedBy,
       imageUrl: message.imageUrl,
       reacts: message.reacts,
+      replyOf: message.replyOf,
       createdAt: dateTime,
       updatedAt: dateTime
     };
