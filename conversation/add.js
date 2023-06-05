@@ -116,9 +116,8 @@ let dateTime = fullDate +",  "+fullTime
                 });
             }else{
                 console.log("Conversation not found: "+ result);
-                var messages = [];
-                messages.add(message);
-                this.addConverastion(users, messages, title, type, res);
+                
+                this.addConverastion(users, [messages], title, type, res);
             }
             
             
