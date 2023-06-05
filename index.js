@@ -168,7 +168,8 @@ socket.on('typing', (data)=>{
 
 
   socket.on('notifyMessageReceived', (data) => {
-    const { convsId, convsType, newUserId } = data; // Data sent from client when notifyMessageSeen event emitted
+    const { convsId, convsType, newUserId } = data;
+    // Data sent from client when notifyMessageSeen event emitted
 
     console.log("notifyMessageReceived Event is called from Client");
     console.log(data);

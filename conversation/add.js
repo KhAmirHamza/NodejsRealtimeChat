@@ -1,6 +1,7 @@
 const Conversation = require('../model/Conversation');
 const User = require('../model/User');
 const moment = require('moment-timezone');
+const Update = require('./update')
 
 module.exports = {
 
@@ -9,7 +10,7 @@ module.exports = {
       //  const dateDhaka = moment.tz(Date.now(), "Asia/Dhaka");
 
 
-        let dateObject = new Date(new Date().toLocaleString('en', {timeZone: 'America/New_York'}));
+        let dateObject = new Date(new Date().toLocaleString('en', {timeZone: 'Ashia/Dhaka'}));
 
 console.log("A date object is defined")
 
@@ -60,5 +61,37 @@ let dateTime = fullDate +",  "+fullTime
             res.json({ message: "Conversation upload Failed" });
             res.end();
         })
+    },
+
+
+    sendFirstMessage(
+        users, 
+        message,
+         title, 
+         type,  res){
+    var query = {};
+    if (message.from._id != null && message.to !=null )
+     query = {'type': type,  $and:[{'users._id': message.from._id},{'users._id': message.to}] } ;
+
+        Conversation.findOne(query).then((result=>{
+
+            if(result!=null) {
+                
+                Update.updateConversationMessage(result._id, message, res);
+
+            }else{
+                var messages = [];
+                messages.add(message);
+                this.addConverastion(users, messages, title, type, res);
+            }
+            
+            
+
+          })).catch((error=>{
+            console.log(error);
+              res.json({ message: error.message, code: 404 })
+              res.end();
+          }));
+
     }
 }

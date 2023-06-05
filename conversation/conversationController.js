@@ -21,6 +21,18 @@ conversationRouter.post("/add", function (req, res) {
     Add.addConverastion(req.body.users, req.body.messages, req.body.title, req.body.type, res);
 });
 
+conversationRouter.post("/firstMessage", function (req, res) {
+    console.log("req.body");
+    console.log(req.body);
+    Add.sendFirstMessage(
+        req.body.users, 
+        req.body.message, 
+        req.body.title, 
+        req.body.type, res);
+});
+
+
+
 conversationRouter.post("/sendMessage/", function (req, res) {
     console.log(req.body);
     Update.updateConversationMessage(req.query.convsId, req.body, res);
