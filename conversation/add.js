@@ -76,7 +76,7 @@ let dateTime = fullDate +",  "+fullTime
 
             if(result!=null) {
                 
-                print("Conversation found: "+ result);
+                console.log("Conversation found: "+ result);
 
                 let dateObject = new Date(new Date().toLocaleString('en', {timeZone: 'America/New_York'}));
 
@@ -115,7 +115,7 @@ let dateTime = fullDate +",  "+fullTime
                     res.end();
                 });
             }else{
-                print("Conversation not found: "+ result);
+                console.log("Conversation not found: "+ result);
                 var messages = [];
                 messages.add(message);
                 this.addConverastion(users, messages, title, type, res);
