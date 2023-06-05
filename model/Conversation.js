@@ -40,7 +40,7 @@ const replyOfSchema = new Schema({
     senderName: { type: String, required: false},
     text: { type: String, required: false },
     imageUrl: { type: String, required: false },
-});
+})
 
 const messageSchema = new Schema({
     _id: { type: String, required: false },

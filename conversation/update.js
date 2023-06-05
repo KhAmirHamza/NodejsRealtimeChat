@@ -51,12 +51,12 @@ module.exports = {
     }
     const query = { "_id": convsId, "messages._id": messageId };
 
-
     await Conversation.findOneAndUpdate(query, { $push: { 'messages.$.reacts': reactSchema } }, { new: true }).then((data)=>{
       res.json(reactSchema);
       res.end();
     });
   },
+
 
   async updateConversationMessageSeenData(convsId, messageId, currentUserId, res) {
     const query = { "_id": convsId, "messages._id": messageId };
